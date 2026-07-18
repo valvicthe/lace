@@ -67,7 +67,7 @@ body {
             @if($isroute == false)
             <footer class="footer bg-white">
                 <div class="container">
-                    <p class="font-weight-bold text-muted">@Copyright 2021-2022 Rainway Team</p>
+                    <p class="font-weight-bold text-muted">@Copyright 2026 Raiin/vexitocin</p>
                     <div class="row text-muted">
                     <p class="text-muted">We are not affiliated with ROBLOX Corporation. | <a href="https://discord.gg/B7KsMcEY4A"> Discord </a> 
                      | <a href="https://github.com/Flofy-Dev/rainway-source/tree/main"> Github </a>
