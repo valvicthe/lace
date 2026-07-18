@@ -12,9 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-function validate($data) {
-  $data = filter_var($data, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-  return $data;
+
+// FIX: Wrapped in function_exists to prevent the redeclaration fatal error during builds/caching
+if (!function_exists('validate')) {
+    function validate($data) {
+        $data = filter_var($data, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+        return $data;
+    }
 }
 
 Route::any('/', function () {
