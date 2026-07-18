@@ -34,7 +34,7 @@
             <div class="card-body">
                 <div class="card-block text-center" style="position:relative; left:3px;">
                     <p class="card-title font-weight-bold" style="font-size: 26px;">Places</p>
-                    <p class="card-title font-weight-bold" style="font-size: 26px;">Coming soon..</p>
+                    <p class="card-title font-weight-bold" style="font-size: 26px;">Not Implemented Yet!</p>
                 </div>
             </div>
         </div>
