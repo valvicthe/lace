@@ -549,6 +549,14 @@ Route::post('/changeusername', function () {
     $newname = validate($_POST['new_username']);
     $user = Auth::user();
 
+    // 1. Check if the username is already taken
+    $taken = DB::table('users')->where('name', $newname)->exists();
+
+    if ($taken) {
+        return redirect('/settings?error=That username is already taken!');
+    }
+
+    // 2. Check if they have enough money
     if ($user->rainbux >= 250) {
         // Deduct money and update name
         DB::table('users')->where('id', $user->id)->update([
