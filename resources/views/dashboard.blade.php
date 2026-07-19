@@ -5,6 +5,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ config('app.name'); }} - Home</title>
         <style>
+            /* Greeting Styles */
+            .greeting-title {
+                font-size: 2.5rem; /* Forces it to be big */
+                font-weight: 800; /* Forces it to be bold */
+                color: #111827;
+                margin-bottom: 0.5rem;
+                line-height: 1.2;
+            }
+            .greeting-subtitle {
+                font-size: 1.125rem;
+                color: #6b7280;
+                margin-bottom: 2rem;
+            }
+
+            /* Quick Links Styles */
             .quick-links-container {
                 display: flex;
                 flex-wrap: wrap;
@@ -57,8 +72,8 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     
                     <!-- Greeting -->
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-3">haii {{ Auth::user()->name }}</h1>
-                    <p class="text-gray-500 text-lg">Welcome to the extremely early beta of raiin!</p>
+                    <h1 class="greeting-title">haii {{ Auth::user()->name }}</h1>
+                    <p class="greeting-subtitle">Welcome to the extremely early beta of raiin!</p>
 
                     <!-- Square Quick Links -->
                     <div class="quick-links-container">
