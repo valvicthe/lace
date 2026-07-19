@@ -16,7 +16,7 @@ if($time > $dbtime)
 }
 ?>
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="{{ Auth::check() && Auth::user()->theme === 'dark' ? 'dark' : '' }}">
 <style>
 html {
   position: relative;
