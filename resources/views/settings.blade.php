@@ -80,6 +80,21 @@
                     </div>
                 </div>
                 </form>
+
+                <form action="/updatetheme" method="POST">
+@csrf
+<div class="card mb-4">
+    <div class="card-header">Appearance</div>
+    <div class="card-body">
+        <label>Select Theme</label>
+            <select name="theme" class="form-control mb-2">
+            <option value="light" {{ Auth::user()->theme == 'light' ? 'selected' : '' }}>Light</option>
+                        <option value="dark" {{ Auth::user()->theme == 'dark' ? 'selected' : '' }}>Dark</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary">Save Theme</button>
+                    </div>
+                </div>
+            </form>
             </div>
 
         </div>
