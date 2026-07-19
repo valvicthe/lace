@@ -44,3 +44,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 }
+
+public function friends()
+{
+    return $this->belongsToMany(User::class, 'friendships', 'user_id', 'friend_id')
+                ->wherePivot('status', 'accepted');
+}
+
+public function friendRequests()
+{
+    return $this->hasMany(Friendship::class, 'friend_id')->where('status', 'pending');
+}
