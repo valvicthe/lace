@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Raiinv2 Client - Test</title>
-    @vite(['resources/css/app.css', 'resources/js/game.js'])
+    <script src="{{ mix('js/game.js') }}" defer></script>
     <style>
         body { margin: 0; overflow: hidden; }
         canvas { display: block; }
