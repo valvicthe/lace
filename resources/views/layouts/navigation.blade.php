@@ -201,6 +201,11 @@
                         Profile
                     </x-nav-link>
                 </div>
+                <div class="flex-shrink-0 flex items-center">
+                    <x-nav-link style="position:relative; left:14px;" href="/rainbux" :active="request()->routeIs('rainbux')">
+                        Rainbux
+                    </x-nav-link>
+                </div>
             </div>
         </div>
     </div>
