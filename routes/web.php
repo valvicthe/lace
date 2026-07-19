@@ -626,6 +626,10 @@ Route::any('/rainbux', function () {
     return view('rainbux');
 })->middleware(['auth', 'verified'])->name('rainbux');
 
+Route::get('/play', function () {
+    return view('play');
+})->middleware(['auth', 'verified'])->name('play');
+
 Route::post('/updatetheme', function () {
     $theme = validate($_POST['theme']); 
     DB::table('users')->where('id', Auth::user()->id)->update(['theme' => $theme]);
