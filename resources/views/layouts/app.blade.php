@@ -53,7 +53,8 @@ body {
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <!-- Added dark:bg-gray-900 here -->
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
             @include('layouts.navigation')
 
             <!-- Page Content -->
@@ -65,13 +66,16 @@ body {
                 $isroute = request()->routeIs('profile');
             ?>
             @if($isroute == false)
-            <footer class="footer bg-white">
+            <!-- Added dark:bg-gray-800 and dark:text-gray-300 here -->
+            <footer class="footer bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
                 <div class="container">
-                    <p class="font-weight-bold text-muted">@Copyright 2026 Raiin/vexitocin</p>
+                    <p class="font-weight-bold text-muted dark:text-gray-400">@Copyright 2026 Raiin/vexitocin</p>
                     <div class="row text-muted">
-                    <p class="text-muted">We are not affiliated with ROBLOX Corporation. | <a href="https://discord.gg/B7KsMcEY4A"> Discord </a> 
-                     | <a href="https://github.com/Flofy-Dev/rainway-source/tree/main"> Github </a>
-                    </p>
+                        <p class="text-muted dark:text-gray-400">
+                            We are not affiliated with ROBLOX Corporation. | 
+                            <a href="https://discord.gg/B7KsMcEY4A" class="text-blue-500 dark:text-blue-400"> Discord </a> 
+                            | <a href="https://github.com/Flofy-Dev/rainway-source/tree/main" class="text-blue-500 dark:text-blue-400"> Github </a>
+                        </p>
                     </div>
                 </div>
             </footer>
