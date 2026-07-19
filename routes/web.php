@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\FriendController;
+use App\Modules\User;
 
 Route::post('/friends/add/{id}', [FriendController::class, 'sendRequest'])->middleware(['auth']);
 /*
@@ -49,8 +50,29 @@ Route::any('/avatar', function () {
     return view('avatar');
 })->middleware(['auth', 'verified'])->name('avatar');
 
-Route::any('/profile', function () {
-    return view('profile');
+Route::any('/profile', function (Request $request) {
+    $id = $request->query('id');
+    
+    // Fetch the user
+    $profileUser = User::where('id', $id)
+                       ->whereNotNull('email_verified_at')
+                       ->first();
+
+    // Fetch the items (only if user exists)
+    $items = [];
+    if ($profileUser) {
+        $items = DB::table('owneditems')
+            ->where('user', $profileUser->id)
+            ->paginate(3);
+            
+        // This makes sure pagination links keep the ?id= in the URL
+        $items->appends(['id' => $profileUser->id]);
+    }
+
+    return view('profile', [
+        'profileUser' => $profileUser,
+        'items' => $items
+    ]);
 })->middleware(['auth', 'verified'])->name('profile');
 
 Route::any('/games', function () {
