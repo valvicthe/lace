@@ -1,3 +1,11 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+/* Force the body to follow the theme */
+@layer base {
+    .dark body {
+        background-color: #111827; /* Tailwind gray-900 */
+        color: #f3f4f6; /* Tailwind gray-100 */
+    }
+}
