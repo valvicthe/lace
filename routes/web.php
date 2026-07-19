@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\FriendController;
-use App\Modules\User;
+use App\Models\User;
 
 Route::post('/friends/add/{id}', [FriendController::class, 'sendRequest'])->middleware(['auth']);
 /*
