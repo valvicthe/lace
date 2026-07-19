@@ -34,7 +34,11 @@ You can use any database driver you want, just configure it in the .env file. Fo
 Check out the Laravel 9 documentation for more info. https://laravel.com/docs/9.x/
 
 ## Release History
-
+* 2.0.0
+    * Added a whole lotta shit
+    * Dark Mode
+    * Functional shit
+ 
 * 1.5.0
     * Added catalog and avatars.
     
@@ -48,7 +52,7 @@ Check out the Laravel 9 documentation for more info. https://laravel.com/docs/9.
     * Added the admin panel.
 
 * 1.1.0
-    * Added the launcher, client, users page and public test game.
+    * Added the users page 
   
 * 1.0.0
     * Working login system
