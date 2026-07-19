@@ -27,3 +27,12 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFour();
     }
 }
+
+public function boot()
+{
+    // This makes the $alert variable available in all views
+    View::composer('*', function ($view) {
+        $alert = DB::table('alerts')->where('active', 1)->first();
+        $view->with('siteAlert', $alert);
+    });
+}
