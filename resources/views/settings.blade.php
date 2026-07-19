@@ -6,7 +6,6 @@
         <title>{{ config('app.name'); }} - Settings</title>
     </head>
 </html>
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -15,30 +14,74 @@
     </x-slot>
     
     <?php 
-        $itemerror = false;
-        if(isset($_GET["error"]))
-            $itemerror = $_GET["error"];
-        ?>
+        $error = request()->get('error');
+    ?>
 
-    @if($itemerror)
-    <div style="margin-top:10px;" class="alert alert-danger" role="alert">
-        Invalid blurb!
+    @if($error)
+    <div class="container mt-3">
+        <div class="alert alert-danger" role="alert">
+            {{ $error }}
+        </div>
     </div>
     @endif
     
-    <form action="/changeblurb" method="POST">
-    {{ csrf_field() }}
-    <div class="col d-flex justify-content-center" style="padding:10px;">
-    <div style="width:600px"; class="card">
-        <div class="card-header">
-            Settings
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Blurb</h5>
-            <textarea class="form-control card-title" rows="6" id="blurb" name="blurb">{{ Auth::user()->blurb }}</textarea>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            
+            <!-- Blurb Form -->
+            <div class="col-md-6 mb-4">
+                <form action="/changeblurb" method="POST">
+                @csrf
+                <div class="card">
+                    <div class="card-header">Blurb</div>
+                    <div class="card-body">
+                        <textarea class="form-control mb-2" rows="4" name="blurb">{{ Auth::user()->blurb }}</textarea>
+                        <button type="submit" class="btn btn-primary">Save Blurb</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+
+            <!-- Username Form -->
+            <div class="col-md-6 mb-4">
+                <form action="/changeusername" method="POST">
+                @csrf
+                <div class="card">
+                    <div class="card-header">Change Username (250 Rainbux)</div>
+                    <div class="card-body">
+                        <input type="text" class="form-control mb-2" name="new_username" placeholder="New Username" required>
+                        <button type="submit" class="btn btn-warning">Change Username</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+
+            <!-- Email & Password Form -->
+            <div class="col-md-6 mb-4">
+                <form action="/changeemail" method="POST">
+                @csrf
+                <div class="card mb-4">
+                    <div class="card-header">Change Email</div>
+                    <div class="card-body">
+                        <input type="email" class="form-control mb-2" name="email" value="{{ Auth::user()->email }}" required>
+                        <button type="submit" class="btn btn-primary">Save Email</button>
+                    </div>
+                </div>
+                </form>
+
+                <form action="/changepassword" method="POST">
+                @csrf
+                <div class="card">
+                    <div class="card-header">Change Password</div>
+                    <div class="card-body">
+                        <input type="password" class="form-control mb-2" name="current_password" placeholder="Current Password" required>
+                        <input type="password" class="form-control mb-2" name="new_password" placeholder="New Password" required>
+                        <button type="submit" class="btn btn-danger">Update Password</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+
         </div>
     </div>
-    </div>
-    </form>
 </x-app-layout>
