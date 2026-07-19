@@ -5,7 +5,7 @@ $userid = Auth::user()->id;
 $rainbux = Auth::user()->rainbux;
 if($time > $dbtime)
 {
-    $rainbux = $rainbux + 25;
+    $rainbux = $rainbux + 150;
     DB::table('users')
         ->where('id', $userid)
         ->update(['timestamp' => $time + 86400]);
