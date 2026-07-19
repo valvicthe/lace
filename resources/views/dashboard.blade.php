@@ -109,4 +109,27 @@
             </div>
         </div>
     </div>
+    <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg p-6">
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Recent Development</h3>
+                @if(isset($commits) && is_array($commits))
+                    <ul class="space-y-4">
+                        @foreach(array_slice($commits, 0, 5) as $commit)
+                            <li class="border-b border-gray-100 dark:border-gray-700 pb-3 last:border-0 last:pb-0">
+                                <a href="{{ $commit['html_url'] }}" target="_blank" class="block group">
+                                    <span class="text-blue-600 dark:text-blue-400 font-medium group-hover:underline">
+                                        {{ Str::limit($commit['commit']['message'], 60) }}
+                                    </span>
+                                    <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                        <span>{{ $commit['commit']['author']['name'] }}</span>
+                                        <span class="mx-2">•</span>
+                                        <span>{{ \Carbon\Carbon::parse($commit['commit']['author']['date'])->diffForHumans() }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                @else
+                    <p class="text-gray-500 dark:text-gray-400">Could not load recent commits.</p>
+                @endif
+            </div>
 </x-app-layout>
