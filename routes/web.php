@@ -26,8 +26,12 @@ Route::any('/', function () {
 });
 
 Route::any('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    $commits = Cache::remember('github_commits', 3600, function () {
+        return Http::get('https://api.github.com/repos/Flofy-Dev/rainway-source/commits')->json();
+    });
+
+    return view('dashboard', compact('commits'));
+})->middleware(['auth'])->name('dashboard');
 
 Route::any('/shop', function () {
     return view('shop');
