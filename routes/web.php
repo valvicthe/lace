@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\FriendController;
 
-
+Route::post('/friends/add/{id}', [FriendController::class, 'sendRequest'])->middleware(['auth']);
 /*
 |--------------------------------------------------------------------------
 | Web Routes
