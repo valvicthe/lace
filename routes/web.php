@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -542,5 +543,45 @@ Route::post('/wearitem', function () {
     exit;
     
 })->middleware(['auth', 'verified'])->name('wearitem');
+
+// Change Username
+Route::post('/changeusername', function () {
+    $newname = validate($_POST['new_username']);
+    $user = Auth::user();
+
+    if ($user->rainbux >= 250) {
+        // Deduct money and update name
+        DB::table('users')->where('id', $user->id)->update([
+            'name' => $newname,
+            'rainbux' => $user->rainbux - 250
+        ]);
+        return redirect('/settings');
+    } else {
+        return redirect('/settings?error=Not enough Rainbux!');
+    }
+})->middleware(['auth', 'verified']);
+
+// Change Email
+Route::post('/changeemail', function () {
+    $email = validate($_POST['email']);
+    DB::table('users')->where('id', Auth::user()->id)->update(['email' => $email]);
+    return redirect('/settings');
+})->middleware(['auth', 'verified']);
+
+// Change Password
+Route::post('/changepassword', function () {
+    $current = $_POST['current_password'];
+    $new = $_POST['new_password'];
+    $user = Auth::user();
+
+    if (Hash::check($current, $user->password)) {
+        DB::table('users')->where('id', $user->id)->update([
+            'password' => Hash::make($new)
+        ]);
+        return redirect('/settings');
+    } else {
+        return redirect('/settings?error=Incorrect current password');
+    }
+})->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
