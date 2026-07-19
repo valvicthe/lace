@@ -29,7 +29,12 @@
                 </div>
             </div>
         </div>
-
+        <form action="/friends/add/{{ $user->id }}" method="POST">
+    @csrf
+    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+        Add Friend
+    </button>
+</form>
         <div class="card">
             <div class="card-body">
                 <div class="card-block text-center" style="position:relative; left:3px;">
