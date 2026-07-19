@@ -3,13 +3,26 @@
 @import 'tailwindcss/utilities';
 
 @layer base {
+    /* Apply dark mode styles when the .dark class is on <html> */
     .dark {
-        color: #ffffff; /* Sets default text color to white */
-        background-color: #111827; /* Sets default page background to dark gray */
+        background-color: #111827; /* Dark background */
+        color: #f3f4f6; /* White-ish text */
+    }
+
+    /* Force your cards and navbars to turn dark */
+    .dark .bg-white {
+        background-color: #1f2937 !important; /* Tailwind gray-800 */
+        color: #f3f4f6 !important;
+    }
+
+    /* Fix the "yucky" blue links */
+    .dark a {
+        color: #60a5fa !important; /* Light blue link color */
     }
     
-    /* Make sure links are visible in dark mode */
-    .dark a {
-        color: #60a5fa; /* A nice blue for links in dark mode */
+    /* Fix specific Bootstrap-style cards */
+    .dark .card {
+        background-color: #1f2937 !important;
+        border-color: #374151 !important;
     }
 }
