@@ -2,10 +2,14 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-/* Force the body to follow the theme */
 @layer base {
-    .dark body {
-        background-color: #111827; /* Tailwind gray-900 */
-        color: #f3f4f6; /* Tailwind gray-100 */
+    .dark {
+        color: #ffffff; /* Sets default text color to white */
+        background-color: #111827; /* Sets default page background to dark gray */
+    }
+    
+    /* Make sure links are visible in dark mode */
+    .dark a {
+        color: #60a5fa; /* A nice blue for links in dark mode */
     }
 }
