@@ -4,6 +4,9 @@
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
+    "files": {
+        "app/helpers.php"
+    },
     "require": {
         "php": "^8.2",
         "anhskohbo/no-captcha": "^3.3",
