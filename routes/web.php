@@ -592,4 +592,8 @@ Route::post('/changepassword', function () {
     }
 })->middleware(['auth', 'verified']);
 
+Route::any('/rainbux', function () {
+    return view('rainbux');
+})->middleware(['auth', 'verified'])->name('rainbux');
+
 require __DIR__.'/auth.php';
