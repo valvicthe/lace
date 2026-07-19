@@ -23,14 +23,14 @@
                 border-radius: 16px;
                 color: #475569;
                 text-decoration: none;
-                transition: all 0.2s ease;
+                transition: all 0.3s ease;
             }
             .quick-link-btn:hover {
                 background-color: #ffffff;
-                border-color: #f97316; /* Orange color */
-                color: #f97316;
+                border-color: #3b82f6; /* Blue border */
+                color: #3b82f6; /* Blue text and icon */
                 transform: translateY(-2px);
-                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); /* Blue glow effect */
             }
             .quick-link-icon {
                 width: 36px;
@@ -57,8 +57,8 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     
                     <!-- Greeting -->
-                    <h1 class="text-3xl font-bold text-gray-800 mb-2">haii {{ Auth::user()->name }}</h1>
-                    <p class="text-gray-500">Welcome to raiin!</p>
+                    <h1 class="text-4xl font-extrabold text-gray-900 mb-3">haii {{ Auth::user()->name }}</h1>
+                    <p class="text-gray-500 text-lg">Welcome to the extremely early beta of raiin!</p>
 
                     <!-- Square Quick Links -->
                     <div class="quick-links-container">
