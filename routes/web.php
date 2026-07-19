@@ -1,19 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShopController;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
-// FIX: Wrapped in function_exists to prevent the redeclaration fatal error during builds/caching
 if (!function_exists('validate')) {
     function validate($data) {
         $data = filter_var($data, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -325,120 +324,8 @@ Route::post('/changeblurb', function () {
     exit;
 })->middleware(['auth', 'verified'])->name('changeblurb');
 
-Route::post('/createitem', function () {
-    $name = validate($_POST['name']);
-    $description = validate($_POST['desc']);
-    $price = abs($_POST['price']);
-    $assetid = abs(validate($_POST['id']));
-    $type = validate($_POST['type']);
-    $thumbnail = file_get_contents("http://renderservice.rainway.xyz/thumbnail.php?id=$assetid");
-    $creator = Auth::user()->id;
-    $adminstatus = Auth::user()->admin;
-    
-    $query = DB::table('shop')->where('robloxid', $assetid)->value('name');
-    $q = DB::table('shop')->where('name', $name)->value('name');
-    
-    $supportedtypes = array("hat", "face", "shirt", "t-shirt", "pants");
-    $found = false;
-    foreach ($supportedtypes as $value) {
-        if($value == $type)
-            $found = true;
-    }
-    
-    if(empty($query) && empty($q) && is_numeric($assetid) && $found && !empty($name) && !empty($description) && !empty($assetid) && !empty($thumbnail) && $adminstatus == 1){
-        if($type != "hat")
-        {
-            $target_dir = $_SERVER['DOCUMENT_ROOT']."/../rainway.cf/API/Assets/$type";
-            $uploadOk = 1;
-            $target_file = basename($_FILES["item_png"]["name"]);
-            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-            
-            // Check if image file is a actual image or fake image
-            if(isset($_POST["submit"])) {
-              $check = getimagesize($_FILES["item_png"]["tmp_name"]);
-              if($check !== false && $imageFileType == "png") {
-                $uploadOk = 1;
-              } else {
-                $uploadOk = 0;
-              }
-            }
-            
-            if ($uploadOk == 1) 
-                move_uploaded_file($_FILES["item_png"]["tmp_name"], "$target_dir/$assetid".".png");
-        }
-        else
-        {
-            $target_dir = $_SERVER['DOCUMENT_ROOT']."/../rainway.cf/API/Assets/hat/textures";
-            $uploadOk = 1;
-            $target_file = basename($_FILES["texture"]["name"]);
-            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-            
-            // Check if image file is a actual image or fake image
-            if(isset($_POST["submit"])) {
-              $check = getimagesize($_FILES["texture"]["tmp_name"]);
-              if($check !== false && $imageFileType == "png") {
-                $uploadOk = 1;
-              } else {
-                $uploadOk = 0;
-              }
-            }
-            
-            if ($uploadOk == 1) 
-                move_uploaded_file($_FILES["texture"]["tmp_name"], "$target_dir/$assetid".".png");
-                
-            $target_dir = $_SERVER['DOCUMENT_ROOT']."/../rainway.cf/API/Assets/hat/meshlinks";
-            $uploadOk = 1;
-            $target_file = basename($_FILES["mesh"]["name"]);
-            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-            
-            // Check if image file is a actual image or fake image
-            if(isset($_POST["submit"])) {
-              if($imageFileType == "mesh") {
-                $uploadOk = 1;
-              } else {
-                $uploadOk = 0;
-              }
-            }
-            
-            if ($uploadOk == 1) 
-                move_uploaded_file($_FILES["mesh"]["tmp_name"], "$target_dir/$assetid".".mesh");
-                
-            $target_dir = $_SERVER['DOCUMENT_ROOT']."/../rainway.cf/API/Assets/hat";
-            $uploadOk = 1;
-            $target_file = basename($_FILES["rbxm"]["name"]);
-            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-            
-            // Check if image file is a actual image or fake image
-            if(isset($_POST["submit"])) {
-              if($imageFileType == "rbxm" || $imageFileType == "rbxmx") {
-                $uploadOk = 1;
-              } else {
-                $uploadOk = 0;
-              }
-            }
-            
-            if ($uploadOk == 1) 
-                move_uploaded_file($_FILES["rbxm"]["tmp_name"], "$target_dir/$assetid".".rbxm");
-        }
-        
-        DB::table('shop')->insert(
-            array(
-               'name'     =>   $name, 
-               'description'   =>   $description,
-               'price'     =>   $price, 
-               'thumbnail'   =>   $thumbnail,
-               'robloxid'   =>   $assetid,
-               'onsale'   =>   1,
-               'creator'   =>   $creator,
-               'type'   =>   $type
-            )
-        );
-    }
-
-    $url = env('APP_URL')."/shop";
-    header("Location: $url");
-    exit;
-})->middleware(['auth', 'verified'])->name('createitem');
+// Updated Route for Create Item
+Route::post('/createitem', [ShopController::class, 'store'])->middleware(['auth', 'verified'])->name('createitem');
 
 Route::post('/edititem', function () {
     $itemid = abs(validate($_POST['itemid']));
