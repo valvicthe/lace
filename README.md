@@ -1,7 +1,7 @@
-# Lace
-> The source of Lace, an open source old Roblox Revival!
+# raiin
+> The source of raiin, an open source old Roblox Revival!
 
-Lace is a project meant to give people the possibility to play legacy versions of the game Roblox, allowing you to deploy servers of your own on a secure code foundation.
+raiin is a project meant to give people the possibility to play legacy versions of the game Roblox, allowing you to deploy servers of your own on a secure code foundation.
 
 ## Dependencies
 * PHP
@@ -12,7 +12,7 @@ Lace is a project meant to give people the possibility to play legacy versions o
 ## Installation
 
 ```sh
-git clone https://github.com/valvicthe/lace
+git clone https://github.com/valvicthe/raiin
 ```
 
 Create a .env file with your details (app name, url, database details etc.). The ".env" file is an example of the enviroment structure.
@@ -25,7 +25,7 @@ npm run prod
 php artisan migrate
 ```
 
-You have now succesfully compiled the Rainway code!
+You have now succesfully compiled the raiin code!
 
 ## Usage
 If you want to directly deploy the server with Laravel, you can use ```php artisan serve```. <br>
