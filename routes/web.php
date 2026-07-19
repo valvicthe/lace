@@ -30,7 +30,7 @@ Route::any('/', function () {
 
 Route::any('/dashboard', function () {
     $commits = Cache::remember('github_commits', 3600, function () {
-        return Http::get('https://api.github.com/repos/Flofy-Dev/rainway-source/commits')->json();
+        return Http::get('https://api.github.com/repos/valvicthe/lace/commits')->json();
     });
 
     return view('dashboard', compact('commits'));
