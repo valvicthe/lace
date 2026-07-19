@@ -4,6 +4,44 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ config('app.name'); }} - Home</title>
+        <style>
+            .quick-links-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 16px;
+                margin-top: 24px;
+            }
+            .quick-link-btn {
+                width: 120px;
+                height: 120px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background-color: #f8fafc;
+                border: 1px solid #e2e8f0;
+                border-radius: 16px;
+                color: #475569;
+                text-decoration: none;
+                transition: all 0.2s ease;
+            }
+            .quick-link-btn:hover {
+                background-color: #ffffff;
+                border-color: #f97316; /* Orange color */
+                color: #f97316;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }
+            .quick-link-icon {
+                width: 36px;
+                height: 36px;
+                margin-bottom: 12px;
+            }
+            .quick-link-text {
+                font-weight: 600;
+                font-size: 15px;
+            }
+        </style>
     </head>
 </html>
 
@@ -20,35 +58,35 @@
                     
                     <!-- Greeting -->
                     <h1 class="text-3xl font-bold text-gray-800 mb-2">haii {{ Auth::user()->name }}</h1>
-                    <p class="text-gray-500 mb-8">Welcome to the extremely early beta of raiin!</p>
+                    <p class="text-gray-500">Welcome to raiin!</p>
 
                     <!-- Square Quick Links -->
-                    <div class="flex flex-wrap gap-4">
+                    <div class="quick-links-container">
                         
                         <!-- Shop Link -->
-                        <a href="{{ route('shop') }}" class="w-32 h-32 flex flex-col items-center justify-center bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-xl shadow-sm transition duration-150 ease-in-out text-gray-700 hover:text-orange-500">
-                            <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <a href="{{ route('shop') }}" class="quick-link-btn">
+                            <svg class="quick-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                             </svg>
-                            <span class="font-semibold">Shop</span>
+                            <span class="quick-link-text">Shop</span>
                         </a>
 
                         <!-- Games Link -->
-                        <a href="{{ route('games') }}" class="w-32 h-32 flex flex-col items-center justify-center bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-xl shadow-sm transition duration-150 ease-in-out text-gray-700 hover:text-orange-500">
-                            <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <a href="{{ route('games') }}" class="quick-link-btn">
+                            <svg class="quick-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <span class="font-semibold">Games</span>
+                            <span class="quick-link-text">Games</span>
                         </a>
 
                         <!-- Settings Link -->
-                        <a href="{{ route('settings') }}" class="w-32 h-32 flex flex-col items-center justify-center bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-xl shadow-sm transition duration-150 ease-in-out text-gray-700 hover:text-orange-500">
-                            <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <a href="{{ route('settings') }}" class="quick-link-btn">
+                            <svg class="quick-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
-                            <span class="font-semibold">Settings</span>
+                            <span class="quick-link-text">Settings</span>
                         </a>
                         
                     </div>
