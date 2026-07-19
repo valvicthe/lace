@@ -208,7 +208,7 @@
 
 <!-- Alert Bar -->
 @if(isset($siteAlert))
-    <div class="bg-orange-500 text-white text-center py-2 font-bold text-sm shadow-sm">
+    <div style="background-color: #f97316;" class="text-white text-center py-2 font-bold text-sm shadow-sm">
         {{ $siteAlert->message }}
     </div>
 @endif
