@@ -199,7 +199,7 @@
                     </x-nav-link>
                 </div>
                 <div class="flex-shrink-0 flex items-center">
-                    <x-nav-link style="position:relative; left:14px;" href="/public/profile?id={{ Auth::user()->id }}" :active="request()->routeIs('profile')">
+                    <x-nav-link style="position:relative; left:14px;" href="/profile?id={{ Auth::user()->id }}" :active="request()->routeIs('profile')">
                         Profile
                     </x-nav-link>
                 </div>
