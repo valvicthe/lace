@@ -35,15 +35,16 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'min:3', 'max:32', 'alpha_num', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            // Email validation has been removed
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'g-recaptcha-response' => 'required|captcha',
         ]);
 
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'email' => null, // Forces the email to be blank
             'password' => Hash::make($request->password),
+            'email_verified_at' => now(), // Automatically verifies the account right now
         ]);
 
         event(new Registered($user));
