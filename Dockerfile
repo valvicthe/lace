@@ -1,5 +1,5 @@
 # 1. Use PHP 8.1 with Apache (Perfect for Laravel 9)
-FROM php:8.1-apache
+FROM php:8.2-apache
 
 # 2. Install System Dependencies & Node 18 (Includes libpq-dev for Postgres)
 RUN apt-get update \
