@@ -73,7 +73,7 @@
                     
                     <!-- Greeting -->
                     <h1 class="greeting-title">haii {{ Auth::user()->name }}</h1>
-                    <p class="greeting-subtitle">Welcome to the extremely early beta of raiin!</p>
+                    <p class="greeting-subtitle">Welcome to raiin [V2}!</p>
 
                     <!-- Square Quick Links -->
                     <div class="quick-links-container">
@@ -102,6 +102,11 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
                             <span class="quick-link-text">Settings</span>
+                        </a>
+
+                        <a href="{{ route('rainbux') }}" class="quick-link-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Robux_2019_Logo_Black.svg" width="60" height="60" alt="Rainbux">
+                            <span class="quick-link-text">Rainbux</span>
                         </a>
                         
                     </div>
