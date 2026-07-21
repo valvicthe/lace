@@ -73,7 +73,7 @@
                     
                     <!-- Greeting -->
                     <h1 class="greeting-title">haii {{ Auth::user()->name }}</h1>
-                    <p class="greeting-subtitle">Current Balance: {{ Auth::user()->rainbux }}</p>
+                    <p class="greeting-subtitle">Current Balance: {{ Auth::user()->rainbux }}R$</p>
 
                     <!-- Square Quick Links -->
                     <div class="quick-links-container">
