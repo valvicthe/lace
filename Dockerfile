@@ -1,4 +1,3 @@
-# 1. Use PHP 8.1 with Apache (Perfect for Laravel 9)
 FROM php:8.2-apache
 
 # 2. Install System Dependencies & Node 18 (Includes libpq-dev for Postgres)
@@ -39,15 +38,14 @@ COPY . .
 # 9. Install Backend Dependencies
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 
-# 10. Install Frontend Dependencies & Build the UI
-RUN npm install && npm run prod
+# 10. Install Frontend Dependencies & Build the UI (Forces devDependencies install)
+RUN npm install --production=false --legacy-peer-deps && npm run prod
 
 # 11. Set Correct Permissions for Laravel
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # 12. Create a startup script
-# Handles dynamic PORT for Render/Railway, runs Postgres migrations, and clears cache on boot
 RUN echo '#!/bin/bash\n\
 sed -i "s/80/$PORT/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf\n\
 php artisan migrate --force\n\
