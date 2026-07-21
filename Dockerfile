@@ -1,3 +1,4 @@
+# 1. Use PHP 8.1 with Apache (Perfect for Laravel 9)
 FROM php:8.2-apache
 
 # 2. Install System Dependencies & Node 18 (Includes libpq-dev for Postgres)
@@ -38,8 +39,10 @@ COPY . .
 # 9. Install Backend Dependencies
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 
-# 10. Install Frontend Dependencies & Build the UI (Forces devDependencies install)
-RUN npm install --production=false --legacy-peer-deps && npm run prod
+# 10. Install Frontend Dependencies & Upgrade Mix to v6 for Webpack 5 compatibility
+RUN npm install --production=false --legacy-peer-deps \
+    && npm install laravel-mix@latest webpack@5 --save-dev --legacy-peer-deps \
+    && npm run prod
 
 # 11. Set Correct Permissions for Laravel
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
