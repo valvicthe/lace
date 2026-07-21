@@ -73,7 +73,7 @@
                     
                     <!-- Greeting -->
                     <h1 class="greeting-title">haii {{ Auth::user()->name }}</h1>
-                    <p class="greeting-subtitle">Welcome to raiin [V2}!</p>
+                    <p class="greeting-subtitle">Current Balance: {{ Auth::user()->rainbux }}</p>
 
                     <!-- Square Quick Links -->
                     <div class="quick-links-container">
