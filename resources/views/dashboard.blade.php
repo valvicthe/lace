@@ -105,7 +105,7 @@
                         </a>
 
                         <a href="{{ route('rainbux') }}" class="quick-link-btn">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Robux_2019_Logo_Black.svg" width="60" height="60" alt="Rainbux">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Robux_2019_Logo_Black.svg" width="30" height="30" alt="Rainbux">
                             <span class="quick-link-text">Rainbux</span>
                         </a>
                         
